@@ -6,3 +6,5 @@ The book Cracking the Coding Interview is written by Gayle Laakmann McDowell.
 
 I will only be solving the code problems in the book and will not be discussion any other content.
 Buy the book.  Is good. 
+
+A comment file will store all additional information and comments for the repo concerning solutions or the repo. 
