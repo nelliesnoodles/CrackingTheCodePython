@@ -114,6 +114,7 @@ def test():
         print(item2)
 
     # fail- Can not rotate N*M with this rotate()
+ # fixed by adding a variable 'width' to the rotate()
     matrix2 = [
         [[101], [102], [103], [104]],
         [[201], [202], [203], [204]],
