@@ -15,3 +15,10 @@ I could totally be wrong.
 ### chapter 1 problem 7 : 2-25-2021
 The code does not include an 'inplace' transformation
 -NT
+
+### chapter1 problem 9 : 2-26-2021
+The author uses 'rotation' and 'permutation' in the problem description.
+Because I wanted to try before I looked at the solution, there is an extra method/function in the file that finds if a string is a permutation of the first one. 
+It's the same string, just scrambled.  
+
+The solution did not want this resolution, but I left it in for prosterity. 
