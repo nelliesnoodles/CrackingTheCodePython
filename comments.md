@@ -22,3 +22,12 @@ Because I wanted to try before I looked at the solution, there is an extra metho
 It's the same string, just scrambled.  
 
 The solution did not want this resolution, but I left it in for prosterity. 
+
+### chapter 2 3-1-2021
+Because there are many differences in the way C implements memory allocation, Just keep in mind that with Python a whole lot of work is done under the hood 
+that we will never have to worry about.   
+
+_Example:  Garbage Collection_
+
+Explanation:  [basics of memory management in python](https://stackabuse.com/basics-of-memory-management-in-python/)
+
