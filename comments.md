@@ -31,3 +31,6 @@ _Example:  Garbage Collection_
 
 Explanation:  [basics of memory management in python](https://stackabuse.com/basics-of-memory-management-in-python/)
 
+### chapter 2 3-4-2021
+The ch2_SetUp.py had some changes. There are links in the Notes to explain what I had to change.  When using the 'or None' in the __ repr__ function of Node(), a zero was seen as falsy, and then the data was set as 'None'.  
+
