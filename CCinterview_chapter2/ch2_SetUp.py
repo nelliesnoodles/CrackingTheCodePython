@@ -9,10 +9,15 @@ class Node(object):
         self.data = data
 
     def __repr__(self):
-        data = self.data or None
-        # Python interprets the integer 0 here as None, convert to string
+        data = self.data #<=  Changed  data = self.data or None was setting 0 as None.
+        # reference Link: https://stackoverflow.com/questions/8747740/assignment-with-or-in-python
+       
         data = str(data)
-        next = self.next and self.next.data or None
+        # Removed ' or None'  to account for data that is the zero integer
+        if self.next != None:
+            next = self.next and self.next.data
+        else:
+            next = 'None'
         dataString = f"[ data: {data}, next: {next} ]"
         return dataString
 
@@ -26,9 +31,8 @@ class LinkedList(object):
          
      def push(self, newdata):
          newnode = Node(newdata)
-         if newdata == 0:
-             # Python will set a zero as None in Node() 
-             newnode.data = '0'
+         
+         #change = removed zero check. The problem was in the __repr__
        
 
          if self.end == None and self.begin == None:
@@ -129,4 +133,14 @@ def test2():
 
     stack.printList()
 
-test2()
+#test2()
+
+def zerobugtest():
+    #fixed.  When assigning the __repr__
+    stack = LinkedList()
+    for i in range(0, 5):
+        stack.append(0)
+    stack.printList()
+
+
+#zerobugtest()
