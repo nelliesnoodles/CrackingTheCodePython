@@ -18,9 +18,9 @@ nextNode = LL3.begin
 LL1.pushNode(nextNode)
 LL2.pushNode(nextNode)
 
-LL1.printList()
-print('-' * 10)
-LL2.printList()
+#LL1.printList()
+#print('-' * 10)
+#LL2.printList()
 #worst case is no intersection
 
 LL4 = LinkedList()
@@ -34,40 +34,73 @@ for char4 in 'notintersecting':
 def findIntersection(linkedlist1, linkedlist2):
     node1 = linkedlist1.begin 
     node2 = linkedlist2.begin
+    node1end = linkedlist1.begin 
+    node2end = linkedlist2.begin
     node2temp = linkedlist2.begin
     count = 0
-    while node1 and node2temp:
-       
-        if node1 == node2:
-            print("*\n",count, "\n*")
-            return node1, node2 
-        if node1.next == node2:
-            print("*\n",count, "\n*")
-            return node1.next, node2 
-        if node2.next == node1:
-            print("*\n",count, "\n*")
-            return node2.next, node1
-        while node2:
-            #print('node1:', node1)
-            #print('node2:', node2)
-            #print("*********************************")
-           
-            if node1 == node2:
-                print("*\n",count, "\n*")
-                return node1, node2
-            if node1.next == node2:
-                print("*\n",count, "\n*")
-                return node1.next, node2
-            if node2.next == node1:
-                print("*\n",count, "\n*")
-                return node1, node2.next
-            node2 = node2.next
-            count += 1
-
-        node1 = node1.next 
-        node2 = node2temp
+    
+    #worst case check
+    # SEE TEST 3.  This does not prevent a 'worst case'
+    # A worst case is when the end node is the intersection.
+    while node1end:
+        if node1end.next == None:
+            break 
+        else:
+            node1end = node1end.next 
         count += 1
-    print("*\n",count, "\n*")   
+
+    while node2end:
+        if node2end.next == None:
+            break
+        else:
+            node2end = node2end.next 
+        count += 1
+
+    if node1end != node2end:
+        print("No intersection")
+        print("count=", count)
+        return None, None
+
+    else:
+        while node1 and node2temp:
+       
+            if node1 == node2:
+                print("intersection found.")
+                print("count=", count)
+                return node1, node2 
+            if node1.next == node2:
+                print("intersection found.")
+                print("count=", count)
+                return node1.next, node2 
+            if node2.next == node1:
+                print("intersection found.")
+                print("count=", count)
+                return node2.next, node1
+            while node2:
+                #print('node1:', node1)
+                #print('node2:', node2)
+                #print("*********************************")
+           
+                if node1 == node2:
+                    print("intersection found.")
+                    print("count=", count)
+                    return node1, node2
+                if node1.next == node2:
+                    print("intersection found.")
+                    print("count=", count)
+                    return node1.next, node2
+                if node2.next == node1:
+                    print("intersection found.")
+                    print("count=", count)
+                    return node1, node2.next
+                node2 = node2.next
+                count += 1
+
+            node1 = node1.next 
+            node2 = node2temp
+            count += 1
+    print("end nodes where the same, but no intersection occured")
+    # FAILSAFE
     return None, None
 
 
@@ -80,7 +113,8 @@ def test1():
     #LL2 = LinkedList() 
     x, y = findIntersection(LL1, LL2)
     # count result = 61
-    print(x, '\n', y)
+
+    print(x, y)
 
 #test1()
 
@@ -92,3 +126,23 @@ def test2():
     #count = 240
 
 #test2()
+
+def test3():
+    #scenario: End node is the intersection
+    LLend1 = LinkedList()
+    LLend2 = LinkedList() 
+    endNode = Node("end")
+    for num in range(19):
+        LLend1.push(num)
+        LLend2.push(num)
+        print(num)
+    LLend1.pushNode(endNode)
+    LLend2.pushNode(endNode)
+    result = findIntersection(LLend1, LLend2)
+    #count = 435 
+    # length of both lists = 19
+    # This is the worst case, and the worst case of checking for the end node, does not stop with the check.
+    
+    print(result)
+
+test3()
