@@ -7,6 +7,8 @@ class Node(object):
     def __init__(self, data):
         self.next = None
         self.data = data
+        self.dual = False
+        self.temp = None
 
     def __repr__(self):
         data = self.data #<=  Changed  data = self.data or None was setting 0 as None.
@@ -61,6 +63,14 @@ class LinkedList(object):
         self.end = newnode
     #    **   END OPTIONAL   **    #
             
+     def pushNode(self, node):
+         #added for 'intersection tests'
+         if self.begin is None:
+            self.begin = node
+         else:
+            self.end.next = node
+
+         self.end = node
 
         
     
