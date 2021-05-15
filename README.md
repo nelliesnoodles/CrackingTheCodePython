@@ -1,4 +1,7 @@
 # CrackingTheCodePython
+5/15/2021
+I am going to work through chapter 1 and include Vanilla JavaScript solutions
+
 I'm going to work through the problems in the book Cracking the Coding Interview, but with Python.
 Currently I believe the problems are solved in Java.
 
