@@ -311,7 +311,7 @@ def Treetest1():
     # Dump is appending more lists than necessary, I'm sure I did the recursion wrong, just FYI, there will be extra empty lists when you dump the tree.
     #Tree.dump()
 
-Treetest1()
+#Treetest1()
 
 
 
