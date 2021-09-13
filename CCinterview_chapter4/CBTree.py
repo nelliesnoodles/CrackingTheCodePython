@@ -265,6 +265,12 @@ class CBTree(object):
         self.updateLevelBreak()
      
     def dump(self):
+        """
+        Print out the sets of branches in each level, or depth of the Complete binary tree.
+        dumphelper uses recursion to go through each branch from root, and check every left and right
+        for child nodes, adding them to the 'indexed' list inside the alist. The [] inside the alist is indexed by 
+        depth, which is incremented each time the recursion goes 'down' or left/right to the next level in the tree.
+        """
         root = self.root
         message = "root"
         depth = 0
@@ -277,24 +283,32 @@ class CBTree(object):
             print("\n")
             depth += 1
 
-    def dumphelper(self, branch, message, alist, depth):
-        # this is messy looking
+   def dumphelper(self, branch, message, alist, depth):        
         alist[depth].append(branch)
         depth += 1
-        if branch.left == None and branch.right == None:
+        left = branch.left
+        right = branch.right
+
+        
+        if left == None and right == None:
             return alist
 
         else:
-            if branch.left != None or branch.right != None:
+            size = len(alist) - 1
+            if size < depth:
+                # the depth increases on each branch recursion.  
+                # the list starts with one list inside it.  
+                # So when root comes through first, it will be appended to the alist[0]
+                # we need to check that there is a second array in alist before we go another layer 
+                # deep in the tree.  This is why we check length - 1.  It comes in with a length of 1
                 alist.append([])
+                  
             
-            if branch.left != None:            
-                left = branch.left
+            if left != None:  
                 message = "branch left"
                 self.dumphelper(left, message, alist, depth)
-            if branch.right != None:
+            if right != None:
                 message = "branch right"
-                right = branch.right            
                 self.dumphelper(right, message, alist, depth)
 
 
