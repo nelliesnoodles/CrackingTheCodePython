@@ -98,15 +98,19 @@ class CBTree(object):
 
 
     Optimization????
-    When we go up the tree, we should never have to go more than one level up, unless the level is full. 
-    We know the level is full when the branch level node count has hit N*2, N being the last levels count or When no empty Right branches can be found 
+    When we go up the tree to find new placements, the travel to the next parent of a left node becomes longer as the depth, or levels of the tree
+    increse.
+    
+    We know the level is full when the branch level node count has hit N=N*2 + 2, 
+    N being the last levels count or When no empty Right branches can be found.
 
-    Otherwise, we'd travel all the way through the tree to discover if there are no right children available.  By keeping count, we know if the level
-    is full, and when to start a new level going from root => left most child and starting over. 
-    This will only happen at the end insertion, but on trees of sizes like 128, we will save a traversal that would touch each node to find out that
-    all node 'right' branches are full.   Is this optimization Worth it?
+    Otherwise, we'd travel all the way through the tree to discover if there are no right children available. *note: I'm not sure what the 'proper' 
+    way to determine a level is full, is.*
+    
+    By keeping count, we know if the level is full by checking the value of the currently being added node's self.ID, against our trees self.N.
+    The self.N is newly set every time we begin a new level with self.N = self.N * 2 + 2 
 
-    When a currentID becomes the same as levelBreak, we will start the next node on a new level. 
+    When the new nodes ID is equal to N, we set self.levelbreak to True, and will start the next node on a new level. 
     """
     def __init__(self):
         self.root = CBNode('ROOTNODE', 0)
@@ -125,7 +129,9 @@ class CBTree(object):
         Add nodes in such a way that all values are added from left to right.
         The first problem is to tackle, where the new node should be added.  
         If the tree is filling from left to right,  we should only need to go in a zig zag like pattern looking for the next 
-        empty parent.  Each level has 2X more nodes than the previous, no more, no less.        
+        empty parent.  For each level to be full we check if current Node ID is equivelant to the self.N.  Node ID is
+        incermented by 1 on each node to keep track of when we need to 'level break' and begin a new level (at the next insertion) with the 
+        boolean self.levelBreak
         """
 
         # Root is preset.   First nodes to be set are the LEFT and RIGHT branch
